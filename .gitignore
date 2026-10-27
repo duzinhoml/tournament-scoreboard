@@ -1,0 +1,19 @@
+# Binaries and object files
+build/
+bin/
+*.o
+*.obj
+*.exe
+*.out
+*.app
+scoreboard
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# IDE and Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
