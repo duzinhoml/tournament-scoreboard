@@ -4,7 +4,7 @@
 
 class Team {
     public:
-        Team(const std::string& teamName);
+        explicit Team(const std::string& teamName);
         const std::string& getName() const;
         int getWins() const;
         int getDraws() const;
@@ -53,12 +53,13 @@ class WinDrawLossRule : public ScoringRule {
 
 class Tournament {
     public:
-        Tournament(const ScoringRule& scoringRule);
+        explicit Tournament(const ScoringRule& scoringRule);
         void registerTeam(const std::string& name);
         void recordMatch(const std::string& first, const std::string& second, int score1, int score2);
         void printStandings() const;
         const std::vector<Team>& getTeams() const;
         const std::vector<Match>& getMatches() const;
+        int pointsFor(const Team& team) const;
 
     private:
         std::vector<Team> m_teams;

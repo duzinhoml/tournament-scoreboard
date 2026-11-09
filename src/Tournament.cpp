@@ -1,4 +1,4 @@
-#include "../include/Tournament.h"
+#include "Tournament.h"
 #include <algorithm>
 #include <iostream>
 #include <stdexcept>
@@ -77,6 +77,10 @@ void Tournament::printStandings() const {
                   << team.getDraws() << " | " << team.getLosses()
                   << " | " << points << "\n";
     }
+}
+
+int Tournament::pointsFor(const Team& team) const {
+    return m_rule.calculatePoints(team.getWins(), team.getDraws(), team.getLosses());
 }
 
 const std::vector<Team>& Tournament::getTeams() const {
