@@ -40,11 +40,9 @@ void Tournament::registerTeam(const std::string& name) {
         throw std::invalid_argument("Team name is empty or already registered");
     m_teams.emplace_back(name);
 }
-class Team {
-public:
 
-    double getWinLossRatio() const;
-};
+
+double getWinLossRatio() const;
 double Team::getWinLossRatio() const {
     if (m_losses == 0) {
         return static_cast<double>(m_wins);
