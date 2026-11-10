@@ -40,7 +40,18 @@ void Tournament::registerTeam(const std::string& name) {
         throw std::invalid_argument("Team name is empty or already registered");
     m_teams.emplace_back(name);
 }
+class Team {
+public:
 
+    double getWinLossRatio() const;
+};
+double Team::getWinLossRatio() const {
+    if (m_losses == 0) {
+        return static_cast<double>(m_wins);
+    }
+
+    return static_cast<double>(m_wins) / m_losses;
+}
 void Tournament::recordMatch(const std::string& first, const std::string& second, int score1, int score2) {
     int a = findTeam(first);
     int b = findTeam(second);
@@ -70,12 +81,20 @@ void Tournament::printStandings() const {
         return a.getName() < b.getName();
     });
 
-    std::cout << "Team | W | D | L | Points\n";
+    std::cout << "Team | W | D | L | W/L Ratio | Points\n";
+
     for (const Team& team : sortedTeams) {
-        int points = m_rule.calculatePoints(team.getWins(), team.getDraws(), team.getLosses());
-        std::cout << team.getName() << " | " << team.getWins() << " | "
-                  << team.getDraws() << " | " << team.getLosses()
-                  << " | " << points << "\n";
+        int points = m_rule.calculatePoints(
+            team.getWins(),
+            team.getDraws(),
+            team.getLosses());
+
+        std::cout << team.getName() << " | "
+            << team.getWins() << " | "
+            << team.getDraws() << " | "
+            << team.getLosses() << " | "
+            << team.getWinLossRatio() << " | "
+            << points << "\n";
     }
 }
 
