@@ -67,8 +67,8 @@ int main(int argc, char* argv[]) {
     QPushButton addButton("Add Team");
     QLabel message("");
 
-    QTableWidget table(0, 5);
-    table.setHorizontalHeaderLabels({"Team", "W", "D", "L", "Points"});
+    QTableWidget table(0, 6);
+    table.setHorizontalHeaderLabels({"Team", "W", "D", "L", "W/L Ratio", "Points"});
     table.horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     table.setEditTriggers(QAbstractItemView::NoEditTriggers);
 
